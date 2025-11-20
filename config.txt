@@ -1,0 +1,4 @@
+;!@Install@!UTF-8!
+Title="Minecraft-3D"
+RunProgram="Minecraft-3D\\Minecraft-3D.exe"
+;!@InstallEnd@!
