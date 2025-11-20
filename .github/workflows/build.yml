@@ -1,0 +1,25 @@
+name: Build Minecraft-3D SFX EXE
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download zip from Dropbox
+        run: wget "https://www.dropbox.com/scl/fi/e1jkmivw87bn1z120htz9/Minecraft-3D-v0.6.zip?dl=1" -O MyApp.zip
+
+      - name: Create SFX EXE
+        run: copy /b 7z.sfx + config.txt + MyApp.zip Minecraft-3D.exe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Minecraft-3D-EXE
+          path: Minecraft-3D.exe
