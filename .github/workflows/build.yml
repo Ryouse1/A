@@ -19,7 +19,7 @@ jobs:
         run: copy /b 7z.sfx + config.txt + MyApp.zip Minecraft-3D.exe
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Minecraft-3D-EXE
           path: Minecraft-3D.exe
