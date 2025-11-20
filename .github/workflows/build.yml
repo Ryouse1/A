@@ -13,10 +13,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Download zip from Dropbox
-        run: wget "https://www.dropbox.com/scl/fi/e1jkmivw87bn1z120htz9/Minecraft-3D-v0.6.zip?dl=1" -O MyApp.zip
+        run: powershell -Command "Invoke-WebRequest -Uri 'https://www.dropbox.com/scl/fi/e1jkmivw87bn1z120htz9/Minecraft-3D-v0.6.zip?dl=1' -OutFile 'MyApp.zip'"
 
       - name: Create SFX EXE
-        run: copy /b 7z.sfx + config.txt + MyApp.zip Minecraft-3D.exe
+        run: |
+          powershell -Command "Get-Content 7z.sfx, config.txt, MyApp.zip -Encoding Byte -ReadCount 0 | Set-Content Minecraft-3D.exe -Encoding Byte"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
